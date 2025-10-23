@@ -7,15 +7,38 @@
 </head>
 <body>
     <header>
-        <h1></h1>
-        <p><strong>Objetivo del ejercicio:</strong> </p>
-        <p><strong>Ejercicio:</strong></p>
+        <h1>Ejercicio 5: Calculadora Sencilla</h1>
+        <p><strong>Objetivo del ejercicio:</strong> Practicar la manipulación de formularios, eventos y lógica básica de JavaScript</p>
+        <p><strong>Ejercicio:</strong> Crea una página con dos campos de entrada de números y cuatro botones: "Sumar", "Restar", "Multiplicar", "Dividir"</p>
+        <ul>
+            <li>Al hacer clic en cualquiera de los botones, debe mostrarse el resultado de la operación en un àrea de texto o debajo de los botones.</li>
+            <li>Asegúrate de validar los datos para evitar errores (como división por cero o entradas vacías)</li>
+        </ul>
         <a href="../index.html">Volver atrás</a>
     <hr>
     </header>
     <main>
-       
+       <form action="#">
+        <div class="inputs">
+            <input type="text" id="number-one">
+            <input type="text" id="number-two">
+            <input type="text" id="result" disabled value="Resultado">
+        </div>
+        <div>
+            <button id="sum" data-op="sum">Sumar</button>
+            <button id="subs" data-op="subs">Restar</button>
+            <button id="power" data-op="power">Multiplicar</button>
+            <button id="divide" data-op="divide">Dividir</button>
+        </div>
+
+       </form>
     </main>
 </body>
-<script src="js_ejercicio_.js"></script>
+<style>
+    /* Estos estilos están aquí y no en un fichero aparte por que únicamente son para poner un poco de margen debajo de los imputs */
+    .inputs{
+        margin-bottom: 1em;
+    }
+</style>
+<script src="js_ejercicio_5.js"></script>
 </html>
