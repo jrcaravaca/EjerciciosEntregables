@@ -19,12 +19,17 @@ input.addEventListener('keydown', (e) => {
     li.forEach(element => {
         elementText = element.innerText
         elementText = elementText.toLowerCase()
+        value = value.toLowerCase()
+        
 
-        if (elementText === value) {
-            console.log(value) // hasta aqui se compara y se imprime por consola solo cuando la palabra está completa
+        for (let i = 0; i < value.length; i++) {
+            if (value [i] !== elementText [i]){
+                list.removeChild(element)
+            }
         }
         
     });
 
 }); 
+
 
