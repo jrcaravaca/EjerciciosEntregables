@@ -1,10 +1,11 @@
-const task = document.getElementById("task"); 
+// const task = document.getElementById("task"); 
 const taskList = document.getElementById("task-list"); 
 const deleteAll = document.getElementById("delete-all"); 
-const deleteDone = document.getElementById("delete-done"); 
+const deleteDone = document.getElementById("delete-completed"); 
 const addTask = document.getElementById("add-task"); 
 
 function saveTask() {
+    // Guardamos el estado actual en localStorage
     const tasks = []; 
     document.querySelectorAll('#task-list li').forEach(li => {
         tasks.push({
@@ -17,6 +18,7 @@ function saveTask() {
 }
 
 function loadTasks() {
+    // Cargamos desde localStorage
     const saved = localStorage.getItem('tasks'); 
     if (!saved) return;
 
@@ -26,14 +28,13 @@ function loadTasks() {
         newTask.dataset.completed = String(completed);
         const check = document.createElement('input'); 
         check.type = 'checkbox'
-        check.checked = completed; 
+        check.checked = completed;
         newTask.innerText = text; 
         newTask.appendChild(check)
 
         check.addEventListener('change', () => {
             newTask.dataset.completed = String(check.checked); 
             newTask.dataset.completed = check.checked; 
-            newTask.style.textDecoration = "line-through";
             saveTask(); 
         });
         taskList.appendChild(newTask);
@@ -43,6 +44,7 @@ function loadTasks() {
 loadTasks()
 
 addTask.addEventListener('click', (e) => {
+
     e.preventDefault()
     const newTask = document.createElement('li')
     newTask.setAttribute("data-completed", false)
@@ -54,13 +56,30 @@ addTask.addEventListener('click', (e) => {
 
     check.addEventListener('change', () => {
        newTask.dataset.completed = check.checked; 
-       newTask.style.textDecoration = "line-through"; 
        saveTask()
     });
     
 
 
     taskList.appendChild(newTask); 
+    task.value = ''; 
     saveTask(); 
 })
 
+deleteAll.addEventListener('click', (e) => {
+    e.preventDefault(); 
+    taskList.innerText = ''; 
+    saveTask()
+}); 
+
+deleteDone.addEventListener('click', (e) => {
+    e.preventDefault(); 
+    const tasks = [...taskList.children]; 
+
+    tasks.forEach(task => {
+        if (task.dataset.completed === 'true') {
+            task.remove()
+        }
+    }); 
+    saveTask()
+}); 
